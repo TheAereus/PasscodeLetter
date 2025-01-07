@@ -7,9 +7,9 @@
 </svelte:head>
 
 <div class="mainBox">
-	Input the password
-	<input type='text' placeholder='Password' />
-	<button type="submit">Submit</button>
+	Yes, there's a password.
+	<input type='text' placeholder='You better get this right...' />
+	<button type="submit">👀</button>
 </div>
 
 <style>
@@ -29,8 +29,8 @@
 	}
 
 	.mainBox input {
-		margin-bottom: auto;
-		margin-top: auto;
+		margin-top: 50px;
+		margin-bottom: 25px;
 		height: 80px;
 		font-size: 30px;
 		font-family: Calibri, sans-serif;
@@ -59,5 +59,15 @@
 		height: 70px;
 		font-size: 30px;
 		font-family: Calibri, sans-serif;
+		border: none;
+		cursor: pointer;
+		box-shadow: 0 10px 0  #035d5c;
+		background-color: #038180;
+		transition-duration: 0.2s;
+	}
+
+	.mainBox button:active {
+		margin-top: 10px;
+		box-shadow: 0 0 #035d5c;
 	}
 </style>
