@@ -3,26 +3,20 @@
 </script>
 
 <div class="app">
-	<main>
-		{@render children()}
-	</main>
+	<slot />
 </div>
 
 <style>
-	.app {
-		display: flex;
-		flex-direction: column;
-		min-height: 100vh;
+	:global(body) {
+		background-color: #b5d9d7;
+		color: #014b4c;
+		padding: 0;
+		margin: 0;
 	}
 
-	main {
-		flex: 1;
+	.app {
 		display: flex;
-		flex-direction: column;
-		padding: 1rem;
-		width: 100%;
-		max-width: 64rem;
-		margin: 0 auto;
-		box-sizing: border-box;
+		justify-content: center;
+		height: 100vh;
 	}
 </style>
