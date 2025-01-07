@@ -4,7 +4,6 @@
 <svelte:head>
 	<title>Password</title>
 	<meta name="description" content="Svelte demo app" />
-	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
 </svelte:head>
 
 <div class="mainBox">
@@ -34,7 +33,7 @@
 		margin-top: auto;
 		height: 80px;
 		font-size: 30px;
-		font-family: 'Montserrat', sans-serif;
+		font-family: Calibri, sans-serif;
 		border: 0 solid #038180;
 		border-radius: 5px;
 		background-color: #038180;
@@ -59,6 +58,6 @@
 		width: 200px;
 		height: 70px;
 		font-size: 30px;
-		font-family: 'Montserrat', sans-serif;
+		font-family: Calibri, sans-serif;
 	}
 </style>
