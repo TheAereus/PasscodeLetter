@@ -12,7 +12,8 @@
 		color: #014b4c;
 		padding: 0;
 		margin: 0;
-		font-family: 'Montserrat', sans-serif;
+		overflow: hidden;
+		font-family: 'Lato',sans-serif;
 	}
 
 	.app {

@@ -2,6 +2,7 @@
 </script>
 
 <svelte:head>
+	<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
 	<title>Password</title>
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
@@ -14,6 +15,8 @@
 
 <style>
 
+
+
 	.mainBox {
 		display: flex;
 		flex-direction: column;
@@ -24,7 +27,7 @@
 		width: 680px;
 		height: 400px;
 		text-align: center;
-		font-size: 30px;
+		font-size: 25px;
 		font-weight: 600;
 	}
 
@@ -33,7 +36,7 @@
 		margin-bottom: 25px;
 		height: 80px;
 		font-size: 30px;
-		font-family: Calibri, sans-serif;
+		font-family: 'Lato', sans-serif;
 		border: 0 solid #038180;
 		border-radius: 5px;
 		background-color: #038180;
@@ -55,10 +58,10 @@
 
 	.mainBox button {
 		align-self: center;
-		width: 200px;
+		width: 70px;
 		height: 70px;
 		font-size: 30px;
-		font-family: Calibri, sans-serif;
+		font-family: 'Lato', sans-serif;
 		border: none;
 		cursor: pointer;
 		box-shadow: 0 10px 0  #035d5c;
@@ -69,5 +72,16 @@
 	.mainBox button:active {
 		margin-top: 10px;
 		box-shadow: 0 0 #035d5c;
+	}
+
+	@media screen and (max-width: 800px) {
+		.mainBox {
+			width: 100%;
+			border-radius: 0;
+		}
+
+		.mainBox input {
+			font-size: 25px;
+		}
 	}
 </style>
