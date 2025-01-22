@@ -29,35 +29,49 @@
 
 
 	.box-container {
-		display: flex;
-		flex-direction: column;
 		align-self: center;
+		border-radius: 5px;
+		width: 680px;
+		height: 400px;
 		perspective: 1000px;
 	}
 
 	.box {
-		display: flex;
-		flex-direction: column;
-		padding: 20px;
-		align-self: center;
-		background-color: #68b2b3;
-		border-radius: 5px;
-		width: 680px;
-		height: 400px;
+		width: 100%;
+		height: 100%;
+		position: relative;
 		text-align: center;
 		font-size: 25px;
 		font-weight: 600;
 		transform-style: preserve-3d;
-		transition: transform 0.3s;
+		transition: transform 0.8s;
 		transform: rotateY(0deg);
 	}
 
 	.box.flipped {
 		transform: rotateY(180deg);
+		backface-visibility: hidden;
 	}
 
 	.box-content{
 		position: absolute;
+		width: 100%;
+		height: 100%;
+		backface-visibility: hidden;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		font-size: 1.2rem;
+		border-radius: 10px;
+	}
+
+	.front{
+		background-color: #68b2b3;
+	}
+
+	.back{
+		background-color: #68b2b3;
 	}
 
 	.box-content input {
@@ -90,7 +104,6 @@
 		padding: 10px;
 		font-size: 30px;
 		font-family: 'Lato', sans-serif;
-		backface-visibility: hidden;
 		border: none;
 		cursor: pointer;
 		box-shadow: 0 10px 0  #035d5c;
