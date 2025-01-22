@@ -10,7 +10,7 @@
 <div class="mainBox">
 	Yes, there's a password.
 	<input type='text' placeholder='You better get this right...' />
-	<button type="submit">👀</button>
+	<button type="submit"><img src="eyes.png" alt="Let's see..."></button>
 </div>
 
 <style>
@@ -58,8 +58,7 @@
 
 	.mainBox button {
 		align-self: center;
-		width: 70px;
-		height: 70px;
+		padding: 10px;
 		font-size: 30px;
 		font-family: 'Lato', sans-serif;
 		border: none;
@@ -72,6 +71,11 @@
 	.mainBox button:active {
 		margin-top: 10px;
 		box-shadow: 0 0 #035d5c;
+	}
+
+	.mainBox button img {
+		width: 50px;
+		height: 50px;
 	}
 
 	@media screen and (max-width: 800px) {
