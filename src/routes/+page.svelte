@@ -29,28 +29,29 @@
 
 
 	.box-container {
-		align-self: center;
-		border-radius: 5px;
-		width: 680px;
-		height: 400px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100vh;
+		overflow: hidden;
 		perspective: 1000px;
 	}
 
 	.box {
-		width: 100%;
-		height: 100%;
+		width: 680px;
+		height: 400px;
+		border-radius: 5px;
 		position: relative;
 		text-align: center;
 		font-size: 25px;
 		font-weight: 600;
 		transform-style: preserve-3d;
-		transition: transform 0.8s;
+		transition: transform 0.8s ease-in-out;
 		transform: rotateY(0deg);
 	}
 
 	.box.flipped {
 		transform: rotateY(180deg);
-		backface-visibility: hidden;
 	}
 
 	.box-content{
@@ -64,6 +65,7 @@
 		align-items: center;
 		font-size: 1.2rem;
 		border-radius: 10px;
+		transition: height 0.6s ease-in-out 0.8s;
 	}
 
 	.front{
@@ -72,6 +74,20 @@
 
 	.back{
 		background-color: #68b2b3;
+		transform: rotateY(180deg);
+	}
+
+	.box.flipped .back {
+		animation: grow 0.6s ease-in-out 0.8s forwards;
+	}
+
+	@keyframes grow {
+		0% {
+			height: 400px;
+		}
+		100% {
+			height: 70vh;
+		}
 	}
 
 	.box-content input {
@@ -129,6 +145,7 @@
 		.box-container {
 			width: 100%;
 			border-radius: 0;
+			height: auto;
 		}
 
 		.box-container input {
