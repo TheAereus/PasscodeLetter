@@ -1,8 +1,12 @@
 <script lang="ts">
 	let isFlipped = false;
+	let password = "";
+	const correctPassword = "test";
 
 	function toggleFlip() {
-		isFlipped = !isFlipped;
+		if (password === correctPassword) {
+			isFlipped = !isFlipped;
+		}
 	}
 </script>
 
@@ -16,8 +20,10 @@
 	<div class="box {isFlipped ? 'flipped' : ''}">
 		<div class="box-content front">
 			Yes, there's a password.
-			<input type='text' placeholder='You better get this right...' />
-			<button on:click={toggleFlip}><img src="eyes.png" alt="Let's see..."></button>
+			<input type="text" placeholder="You better get this right..." bind:value={password} />
+			<button on:click={toggleFlip} disabled={password !== correctPassword}>
+				<img src="eyes.png" alt="Let's see...">
+			</button>
 		</div>
 		<div class="box-content back">
 			<p>HAPPY FUCKING FIVE YEARS LOLLL
@@ -154,6 +160,7 @@
 
 	.box-content button:active {
 		margin-top: 10px;
+		margin-bottom: -10px;
 		box-shadow: 0 0 #035d5c;
 	}
 
