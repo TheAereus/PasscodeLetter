@@ -21,6 +21,7 @@
 		</div>
 		<div class="box-content back">
 			<button on:click={toggleFlip}>Turn back</button>
+
 		</div>
 	</div>
 </div>
@@ -33,11 +34,12 @@
 		justify-content: center;
 		align-items: center;
 		height: 100vh;
-		overflow: hidden;
+		width: 100vw;
 		perspective: 1000px;
 	}
 
 	.box {
+		display: flex;
 		width: 680px;
 		height: 400px;
 		border-radius: 5px;
@@ -52,6 +54,10 @@
 
 	.box.flipped {
 		transform: rotateY(180deg);
+	}
+
+	.box.flipped {
+		animation: grow 0.6s ease-in-out 0.8s forwards;
 	}
 
 	.box-content{
@@ -75,10 +81,6 @@
 	.back{
 		background-color: #68b2b3;
 		transform: rotateY(180deg);
-	}
-
-	.box.flipped .back {
-		animation: grow 0.6s ease-in-out 0.8s forwards;
 	}
 
 	@keyframes grow {
@@ -142,14 +144,12 @@
 	}
 
 	@media screen and (max-width: 800px) {
-		.box-container {
-			width: 100%;
-			border-radius: 0;
-			height: auto;
-		}
-
 		.box-container input {
 			font-size: 25px;
+		}
+
+		.box-content {
+			border-radius: 0;
 		}
 	}
 </style>
