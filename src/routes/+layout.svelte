@@ -2,8 +2,12 @@
 	let { children } = $props();
 </script>
 
+<svelte:head>
+	<title>Password</title>
+</svelte:head>
+
 <div class="app">
-	<slot />
+	{@render children?.()}
 </div>
 
 <style>
