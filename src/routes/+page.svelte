@@ -65,7 +65,7 @@
 		height: 400px;
 		border-radius: 5px;
 		position: relative;
-		text-align: center;
+		text-align: justify;
 		font-size: 25px;
 		font-weight: 600;
 		transform-style: preserve-3d;
@@ -104,6 +104,7 @@
 		overflow-x: hidden;
 		background: white;
 		padding: 20px;
+		scrollbar-color: #038180 #68b2b3;
 	}
 
 	.box-content{
