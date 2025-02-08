@@ -1,10 +1,10 @@
 <script lang="ts">
 	let isFlipped = false;
 	let password = "";
-	const correctPassword = "test";
+	const correctPassword = "TEST";
 
 	function toggleFlip() {
-		if (password === correctPassword) {
+		if (password.toUpperCase() === correctPassword) {
 			isFlipped = !isFlipped;
 		}
 	}
@@ -19,9 +19,10 @@
 <div class="box-container">
 	<div class="box {isFlipped ? 'flipped' : ''}">
 		<div class="box-content front">
-			Yes, there's a password.
+			<p class="title">Yes, there's a password.</p>
 			<input type="text" placeholder="You better get this right..." bind:value={password} />
-			<button on:click={toggleFlip} disabled={password !== correctPassword}>
+			<p class="subtext"><i>not</i> case sensitive</p>
+			<button on:click={toggleFlip} disabled={password.toUpperCase() !== correctPassword}>
 				<img src="eyes.png" alt="Let's see...">
 			</button>
 		</div>
@@ -105,6 +106,18 @@
 		background: white;
 		padding: 20px;
 		scrollbar-color: #038180 #68b2b3;
+		scrollbar-width: thin;
+	}
+
+	.title{
+		font-size: 30px;
+		margin-bottom: 50px;
+	}
+
+	.subtext {
+		margin: 5px;
+		font-size: 15px;
+		color: rgba(3, 129, 128, 0.75);
 	}
 
 	.box-content{
@@ -123,8 +136,7 @@
 
 
 	.box-content input {
-		margin-top: 50px;
-		margin-bottom: 25px;
+		padding: 10px;
 		height: 80px;
 		font-size: 30px;
 		font-family: 'Lato', sans-serif;
