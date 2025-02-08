@@ -95,8 +95,9 @@
 
 	.back p {
 		overflow: scroll;
+		overflow-x: hidden;
 		background: white;
-		padding: 10px;
+		padding: 20px;
 	}
 
 	.box-content{
