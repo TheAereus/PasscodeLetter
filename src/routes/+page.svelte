@@ -204,6 +204,7 @@
 	@media screen and (max-width: 800px) {
 		.box-container input {
 			font-size: 25px;
+			width: 90vw;
 		}
 
 		.box-content {
