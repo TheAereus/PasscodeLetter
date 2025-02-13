@@ -1,11 +1,21 @@
 <script lang="ts">
 	let isFlipped = false;
-	let password = "";
-	const correctPassword = "TEST";
+	let inputPassword = "";
+	const passwords = ["TEST", "TEST?", "TEST??"];
+	const prompts = [{title:"Yes, there is a password", placeholder:"You better get this right..."},
+					 {title:"Yes, there is another password", placeholder:"You better get this right too!"},
+					 {title:"Yes, this is the last password", placeholder:"You better not get this wrong!!"}];
+	let currentScreen = 0;
 
 	function toggleFlip() {
-		if (password.toUpperCase() === correctPassword) {
-			isFlipped = !isFlipped;
+		console.log(inputPassword, currentScreen);
+		if (inputPassword.toUpperCase() === passwords[currentScreen]) {
+			if (currentScreen < passwords.length - 1) {
+				currentScreen++;
+				inputPassword = "";
+			} else {
+				isFlipped = true;
+			}
 		}
 	}
 </script>
@@ -16,14 +26,16 @@
 
 <div class="box-container">
 	<div class="box {isFlipped ? 'flipped' : ''}">
-		<div class="box-content front">
-			<p class="title">Yes, there's a password.</p>
-			<input type="text" placeholder="You better get this right..." bind:value={password} />
-			<p class="subtext"><i>not</i> case sensitive</p>
-			<button on:click={toggleFlip} disabled={password.toUpperCase() !== correctPassword}>
-				<img src="eyes.png" alt="Let's see...">
-			</button>
-		</div>
+		{#each passwords as _, index}
+			<div class="box-content {currentScreen === index ? 'active' : ''}">
+				<p class="title">{prompts[index].title}</p>
+				<input type="text" placeholder={prompts[index].placeholder} bind:value={inputPassword} />
+				<p class="subtext"><i>not</i> sensitive to capital letters</p>
+				<button on:click={toggleFlip} disabled={inputPassword.toUpperCase() !== passwords[currentScreen]}>
+					<img src="eyes.png" alt="Let's see...">
+				</button>
+			</div>
+		{/each}
 		<div class="box-content back">
 			<p>
 				HAPPY FUCKING FIVE YEARS MR PEANITS BOY<br>
@@ -50,23 +62,6 @@
 				<br>
 				Happy five years, dumbass. Here’s to half a decade of you driving me insane, of me missing you more than I should, of making me blue, but the good kind.<br>
 			</p>
-			<!--<p>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et cursus sapien. Nulla facilisi. Vestibulum fringilla dictum metus, in lobortis felis finibus quis. Donec et eros eu elit vulputate dictum. Curabitur scelerisque vehicula ullamcorper. Proin varius auctor velit, sit amet lobortis lectus maximus sed. Fusce et elementum eros, quis ornare nulla. Ut nec laoreet nisi. Vivamus eleifend justo vel lacinia semper. Vivamus quis diam et purus venenatis sollicitudin.<br>
-				<br>
-				Integer lacinia, odio quis faucibus ullamcorper, nisl sapien pretium lectus, sit amet tempus quam felis vel dui. Etiam mollis efficitur ante, et placerat metus placerat rutrum. Vivamus gravida molestie lacus, non viverra mauris. Phasellus justo turpis, rutrum sed eros nec, blandit blandit sem. Suspendisse et tristique justo, ut tincidunt mauris. Phasellus tempus, ligula ac placerat faucibus, tortor mauris rutrum dolor, in aliquet augue nisl ac sapien. Donec sed odio at massa fermentum aliquet et vel sem. Phasellus ut commodo nisl. Etiam lacinia vehicula nunc vitae fermentum. Nunc maximus ipsum metus, ac pulvinar nulla bibendum sit amet. Mauris sollicitudin metus consectetur fringilla varius. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam imperdiet leo et felis tincidunt, ut placerat arcu sollicitudin. Nulla pulvinar nulla ac nisi eleifend pulvinar.<br>
-				<br>
-				Quisque lacus ex, pretium non ex ut, iaculis luctus ligula. Pellentesque tincidunt nibh egestas efficitur ultricies. Proin at eros egestas, finibus nunc lacinia, bibendum tellus. Aliquam et enim arcu. Maecenas in efficitur turpis, et posuere lorem. Aenean malesuada nisi lectus, a hendrerit justo porttitor vitae. Mauris pretium magna vel ultricies faucibus. Pellentesque ac lacus at nisi suscipit pharetra vel eu risus. Suspendisse imperdiet tincidunt eros, id dictum tellus dignissim nec. Integer eros nisl, condimentum id nisi quis, bibendum euismod tortor.<br>
-				<br>
-				Quisque consequat felis rhoncus diam molestie ornare. Morbi commodo augue sit amet dolor auctor, at mattis libero aliquam. Etiam sed commodo purus. Nulla facilisi. Sed ullamcorper semper bibendum. Aenean rutrum tellus non lobortis ultrices. Vestibulum velit tortor, gravida et facilisis a, porta id eros. Nulla molestie ipsum et ante congue feugiat.<br>
-				<br>
-				Aliquam purus neque, bibendum nec orci vitae, tempor sagittis tellus. Nullam sed dapibus sem, sit amet efficitur purus. Integer id risus accumsan, efficitur urna id, tincidunt nunc. Donec mi eros, ultrices et sem eu, fringilla mollis urna. Sed suscipit purus suscipit, porttitor orci vitae, tempus massa. Vivamus semper enim nulla, id vehicula mauris dictum sagittis. Fusce quis tempor felis, in pulvinar odio. Sed vel est efficitur, faucibus tortor quis, vestibulum nulla. Sed pharetra fermentum molestie. Mauris porta posuere sagittis. Curabitur interdum tincidunt scelerisque.<br>
-				<br>
-				Nam turpis velit, consequat convallis odio at, pretium efficitur eros. Nullam mi turpis, mattis quis congue ac, tincidunt nec justo. Maecenas in mi vehicula, auctor est ac, viverra tortor. Nunc et sem purus. Praesent ac eros cursus, auctor risus at, rutrum libero. Maecenas elementum orci est, quis blandit nulla dapibus sit amet. Integer consectetur tempus mauris, eu dictum urna laoreet nec. Ut suscipit nec lectus quis pulvinar. Vivamus porta vel est et feugiat. Morbi gravida leo vel elit mattis, quis sagittis lacus bibendum. Vestibulum dolor dui, pellentesque et rhoncus et, egestas ut enim. Pellentesque in magna eu ante vulputate hendrerit.<br>
-				<br>
-				Integer ac nulla maximus, feugiat magna et, faucibus nisi. Nunc vestibulum consectetur tellus eget ultricies. Morbi in quam efficitur, laoreet odio eu, finibus quam. Pellentesque tincidunt leo vel convallis placerat. Vivamus ac nulla ullamcorper, eleifend turpis et, ultrices enim. Quisque enim purus, viverra sit amet scelerisque in, faucibus vel nulla. Etiam pretium cursus suscipit. Duis magna eros, cursus eget est sit amet, blandit pharetra arcu. Nunc fermentum leo ut malesuada aliquet. Proin sed tristique nisl, ut lacinia turpis.<br>
-				<br>
-				Suspendisse ac leo eget ligula convallis pulvinar quis vel augue. Morbi odio mi, pellentesque iaculis dolor ac, sagittis efficitur massa. Aliquam volutpat, enim sit amet mollis sollicitudin, nulla metus pulvinar erat, non finibus sem nisi sit amet arcu. Praesent lobortis suscipit ligula gravida imperdiet. Aliquam tellus nulla, dapibus sed arcu vitae, ultrices mollis ante. Praesent imperdiet blandit suscipit. Aenean risus ante, imperdiet vitae neque sit amet, viverra ullamcorper nulla. Aenean est metus, porta non tortor ut, varius tincidunt ligula. Nam fermentum fringilla mauris, id ultricies orci. Cras at magna et risus efficitur egestas eu ac enim. Etiam eu erat id justo congue tempor in at ipsum. Phasellus volutpat euismod orci, vel aliquet metus consectetur id. Ut sit amet sem iaculis, tempus diam ut, dapibus erat.<br>
-			</p>-->
 		</div>
 	</div>
 </div>
@@ -84,12 +79,13 @@
 	}
 
 	.box {
+		backface-visibility: hidden;
 		display: flex;
 		width: 680px;
 		height: 400px;
 		border-radius: 5px;
 		position: relative;
-		text-align: justify;
+		text-align: center;
 		font-size: 25px;
 		font-weight: 600;
 		transform-style: preserve-3d;
@@ -99,9 +95,6 @@
 
 	.box.flipped {
 		transform: rotateY(180deg);
-	}
-
-	.box.flipped {
 		animation: grow 2s ease-in-out 0.8s forwards;
 	}
 
@@ -112,24 +105,6 @@
 		100% {
 			height: 85vh;
 		}
-	}
-
-	.front{
-		background-color: #68b2b3;
-	}
-
-	.back{
-		background-color: #68b2b3;
-		transform: rotateY(180deg);
-	}
-
-	.back p {
-		overflow: scroll;
-		overflow-x: hidden;
-		background: white;
-		padding: 20px;
-		scrollbar-color: #038180 #68b2b3;
-		scrollbar-width: thin;
 	}
 
 	.title{
@@ -148,7 +123,7 @@
 		width: 100%;
 		height: 100%;
 		backface-visibility: hidden;
-		display: flex;
+		display: none;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
@@ -160,6 +135,7 @@
 
 	.box-content input {
 		padding: 10px;
+		width: 500px;
 		height: 80px;
 		font-size: 30px;
 		font-family: 'Lato', sans-serif;
@@ -205,8 +181,24 @@
 		height: 50px;
 	}
 
-	.back {
+	.box-content.active {
+		background-color: #68b2b3;
+		display: flex;
+	}
+
+	.back{
+		display: flex;
+		background-color: #68b2b3;
 		transform: rotateY(180deg);
+	}
+
+	.back p {
+		overflow: scroll;
+		overflow-x: hidden;
+		background: white;
+		padding: 20px;
+		scrollbar-color: #038180 #68b2b3;
+		scrollbar-width: thin;
 	}
 
 	@media screen and (max-width: 800px) {
