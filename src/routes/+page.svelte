@@ -39,7 +39,7 @@
 						<img src="lightbulb.png" alt="hint">
 					</button>
 					<button on:click={toggleFlip}>
-						<img src="eyes.png" alt="Let's see...">
+						▶
 					</button>
 				</div>
 				<p class="error-message {wrongPW ? 'active' : ''}">no way you got it wrong bc</p>
