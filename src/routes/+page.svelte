@@ -31,6 +31,9 @@
 	<div class="box {isFlipped ? 'flipped' : ''}">
 		{#each passwords as _, index}
 			<div class="box-content {currentScreen === index ? 'active' : ''}">
+				<button style="position:absolute; top: 5px; left: 5px;">
+					<img src="lightbulb.png" alt="hint">
+				</button>
 				<p class="title">{prompts[index].title}</p>
 				<input type="text" placeholder={prompts[index].placeholder} bind:value={inputPassword} />
 				<p class="subtext"><i>not</i> sensitive to capital letters</p>
@@ -165,7 +168,10 @@
 
 	.box-content button {
 		align-self: center;
-		padding: 10px;
+		align-content: center;
+		justify-content: center;
+		height: 70px;
+		width: 70px;
 		font-size: 30px;
 		font-family: 'Lato', sans-serif;
 		border: none;
