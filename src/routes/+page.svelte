@@ -1,6 +1,7 @@
 <script lang="ts">
 	let isFlipped = false;
 	let inputPassword = "";
+	let wrongPW = false;
 	const passwords = ["TEST", "TEST?", "TEST??"];
 	const prompts = [{title:"Yes, there is a password", placeholder:"You better get this right..."},
 					 {title:"Yes, there is another password", placeholder:"You better get this right too!"},
@@ -8,14 +9,16 @@
 	let currentScreen = 0;
 
 	function toggleFlip() {
-		console.log(inputPassword, currentScreen);
 		if (inputPassword.toUpperCase() === passwords[currentScreen]) {
 			if (currentScreen < passwords.length - 1) {
 				currentScreen++;
+				wrongPW = false;
 				inputPassword = "";
 			} else {
 				isFlipped = true;
 			}
+		} else {
+			wrongPW = true;
 		}
 	}
 </script>
@@ -31,9 +34,10 @@
 				<p class="title">{prompts[index].title}</p>
 				<input type="text" placeholder={prompts[index].placeholder} bind:value={inputPassword} />
 				<p class="subtext"><i>not</i> sensitive to capital letters</p>
-				<button on:click={toggleFlip} disabled={inputPassword.toUpperCase() !== passwords[currentScreen]}>
+				<button on:click={toggleFlip}>
 					<img src="eyes.png" alt="Let's see...">
 				</button>
+				<p class="error-message {wrongPW ? 'active' : ''}">How dare you get it wrong...</p>
 			</div>
 		{/each}
 		<div class="box-content back">
@@ -180,6 +184,30 @@
 	.box-content button img {
 		width: 50px;
 		height: 50px;
+	}
+
+	.error-message {
+		opacity: 0;
+		height: 0;
+		width: 0;
+		padding: 0;
+		background-color: #ff6e6e;
+		border-radius: 15px;
+		border: 3px solid #ff3b3b;
+		align-content: center;
+		color: transparent;
+		text-align: center;
+		text-overflow: clip;
+		white-space: nowrap;
+		overflow: hidden;
+		transition: opacity 0.4s ease, height 1s ease, width 3s ease 1s, color 1s 2s;
+	}
+
+	.error-message.active {
+		opacity: 1;
+		height: 50px;
+		color: white;
+		width: 70%;
 	}
 
 	.box-content.active {
