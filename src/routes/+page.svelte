@@ -31,7 +31,7 @@
 	<div class="box {isFlipped ? 'flipped' : ''}">
 		{#each passwords as _, index}
 			<div class="box-content {currentScreen === index ? 'active' : ''}">
-				<button style="position:absolute; top: 5px; left: 5px;">
+				<button id="hint-button">
 					<img src="lightbulb.png" alt="hint">
 				</button>
 				<p class="title">{prompts[index].title}</p>
@@ -40,7 +40,7 @@
 				<button on:click={toggleFlip}>
 					<img src="eyes.png" alt="Let's see...">
 				</button>
-				<p class="error-message {wrongPW ? 'active' : ''}">How dare you get it wrong...</p>
+				<p class="error-message {wrongPW ? 'active' : ''}">no way you got it wrong bc</p>
 			</div>
 		{/each}
 		<div class="box-content back">
@@ -170,8 +170,7 @@
 		align-self: center;
 		align-content: center;
 		justify-content: center;
-		height: 70px;
-		width: 70px;
+		padding: 5px;
 		font-size: 30px;
 		font-family: 'Lato', sans-serif;
 		border: none;
@@ -192,6 +191,12 @@
 		height: 50px;
 	}
 
+	#hint-button{
+		position:absolute;
+		top: 5px;
+		left: 5px;
+	}
+
 	.error-message {
 		opacity: 0;
 		height: 0;
@@ -200,18 +205,19 @@
 		background-color: #ff6e6e;
 		border-radius: 15px;
 		border: 3px solid #ff3b3b;
+		font-size: 15px;
 		align-content: center;
 		color: transparent;
 		text-align: center;
 		text-overflow: clip;
 		white-space: nowrap;
 		overflow: hidden;
-		transition: opacity 0.4s ease, height 1s ease, width 3s ease 1s, color 1s 2s;
+		transition: opacity 0.2s ease, height 0.5s ease, width 1s ease 0.5s, color 0.5s 1s;
 	}
 
 	.error-message.active {
 		opacity: 1;
-		height: 50px;
+		height: 30px;
 		color: white;
 		width: 70%;
 	}
@@ -244,6 +250,22 @@
 
 		.box-content {
 			border-radius: 0;
+		}
+
+		#hint-button{
+			padding: 5px;
+			box-shadow: 0 5px 0  #035d5c;
+		}
+
+		#hint-button img{
+			width: 30px;
+			height: 30px;
+		}
+
+		#hint-button:active {
+			margin-top: 5px;
+			margin-bottom: -5px;
+			box-shadow: 0 0 #035d5c;
 		}
 	}
 </style>
