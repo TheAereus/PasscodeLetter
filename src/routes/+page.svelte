@@ -31,15 +31,17 @@
 	<div class="box {isFlipped ? 'flipped' : ''}">
 		{#each passwords as _, index}
 			<div class="box-content {currentScreen === index ? 'active' : ''}">
-				<button id="hint-button">
-					<img src="lightbulb.png" alt="hint">
-				</button>
 				<p class="title">{prompts[index].title}</p>
 				<input type="text" placeholder={prompts[index].placeholder} bind:value={inputPassword} />
 				<p class="subtext"><i>not</i> sensitive to capital letters</p>
-				<button on:click={toggleFlip}>
-					<img src="eyes.png" alt="Let's see...">
-				</button>
+				<div class="buttons">
+					<button id="hint-button">
+						<img src="lightbulb.png" alt="hint">
+					</button>
+					<button on:click={toggleFlip}>
+						<img src="eyes.png" alt="Let's see...">
+					</button>
+				</div>
 				<p class="error-message {wrongPW ? 'active' : ''}">no way you got it wrong bc</p>
 			</div>
 		{/each}
@@ -252,9 +254,18 @@
 			border-radius: 0;
 		}
 
+		.buttons{
+			position: relative;
+			width: 100%;
+		}
+
 		#hint-button{
+			position: absolute;
+			left: 5px;
+			top: 10px;
 			padding: 5px;
 			box-shadow: 0 5px 0  #035d5c;
+			margin: 0;
 		}
 
 		#hint-button img{
