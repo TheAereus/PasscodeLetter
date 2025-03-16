@@ -85,11 +85,11 @@
 				और अगर रही ज़िंदगी, तो मिलेंगे दोबारा।.<br>
 				<br>
 				Happy five years, dumbass. Here’s to half a decade of you driving me insane, of me missing you more than I should, of making me blue, but the good kind.<br>
+				<button on:click={function () {audio.play()}}>
+					here's a kiss on the cheek
+					<audio src="kiss.mp3" bind:this={audio}></audio>
+				</button>
 			</p>
-			<button on:click={function () {audio.play()}}>
-				here's a kiss on the cheek
-			<audio src="kiss.mp3" bind:this={audio}></audio>
-			</button>
 		</div>
 	</div>
 </div>
@@ -128,15 +128,14 @@
 
 	.box.flipped button{
 		width: auto;
-		margin-top: -15px;
-		margin-bottom: 15px;
 		color: black;
 		touch-action: manipulation;
+		font-size: 20px;
 	}
 
 	.box.flipped button:active {
-		margin-top: -5px;
-		margin-bottom: 5px;
+		margin-top: 10px;
+		margin-bottom: -10px;
 		box-shadow: 0 0 #035d5c;
 	}
 
