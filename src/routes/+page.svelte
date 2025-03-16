@@ -143,6 +143,7 @@
 		width: auto;
 		color: black;
 		font-size: 20px;
+		z-index: 900000000000;
 	}
 
 	.box.flipped button:active {
