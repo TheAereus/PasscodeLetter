@@ -128,6 +128,15 @@
 
 	.box.flipped button{
 		width: auto;
+		margin-top: -25px;
+		margin-bottom: 25px;
+		color: black;
+	}
+
+	.box.flipped button:active {
+		margin-top: -15px;
+		margin-bottom: 15px;
+		box-shadow: 0 0 #035d5c;
 	}
 
 	@keyframes grow {
