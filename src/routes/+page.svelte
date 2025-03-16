@@ -1,5 +1,5 @@
 <script lang="ts">
-	import {onMount} from "svelte";
+	import {onMount, tick} from "svelte";
 	import {browser} from '$app/environment'
 
 	let isFlipped = false;
@@ -17,6 +17,7 @@
 
 	onMount(async () => {
 		audio = new Audio('kiss.mp3');
+		await tick();
 
 		if(audioButton) {
 			audioButton.addEventListener('click', e => {
