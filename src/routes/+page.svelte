@@ -142,7 +142,6 @@
 	.box.flipped button{
 		width: auto;
 		color: black;
-		touch-action: manipulation;
 		font-size: 20px;
 	}
 
