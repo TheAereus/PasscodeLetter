@@ -1,4 +1,7 @@
 <script lang="ts">
+	import {onMount} from "svelte";
+	import {browser} from '$app/environment'
+
 	let isFlipped = false;
 	let inputPassword = "";
 	let wrongPW = false;
@@ -8,15 +11,27 @@
 					 {title:"Yes, this is the last password", placeholder:"You better not get this wrong!!", hint:"g'nighty _____ ~💙"}];
 	let currentScreen = 0;
 	let showHint = false;
-	let audio;
+
+	let audio: HTMLAudioElement;
+	let audioButton: HTMLButtonElement;
+
+	onMount(async () => {
+		audio = new Audio('kiss.mp3');
+
+		if(audioButton) {
+			audioButton.addEventListener('click', e => {
+				e.preventDefault();
+				console.log("mwah");
+				audio.play();
+			});
+		}
+	});
 
 	function toggleHint(){
 		showHint = !showHint;
 	}
 
 	function toggleFlip() {
-		console.log(inputPassword);
-		console.log(passwords[currentScreen]);
 		if (inputPassword.toUpperCase() === passwords[currentScreen].toUpperCase()) {
 			if (currentScreen < passwords.length - 1) {
 				showHint = false;
@@ -85,9 +100,8 @@
 				और अगर रही ज़िंदगी, तो मिलेंगे दोबारा।.<br>
 				<br>
 				Happy five years, dumbass. Here’s to half a decade of you driving me insane, of me missing you more than I should, of making me blue, but the good kind.<br>
-				<button on:click={function () {audio.play()}}>
+				<button bind:this={audioButton}>
 					here's a kiss on the cheek
-					<audio src="kiss.mp3" bind:this={audio}></audio>
 				</button>
 			</p>
 		</div>
