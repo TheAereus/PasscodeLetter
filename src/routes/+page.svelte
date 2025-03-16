@@ -27,9 +27,6 @@
 				}, 600);
 			} else {
 				isFlipped = true;
-				setTimeout(function () {
-					audio.play();
-				}, 1500);
 			}
 		} else {
 			wrongPW = true;
@@ -89,7 +86,10 @@
 				<br>
 				Happy five years, dumbass. Here’s to half a decade of you driving me insane, of me missing you more than I should, of making me blue, but the good kind.<br>
 			</p>
-			<audio src="kiss.mp3" style="display:none" bind:this={audio}></audio>
+			<button on:click={function () {audio.play()}}>
+				here's a kiss on the cheek
+			<audio src="kiss.mp3" bind:this={audio}></audio>
+			</button>
 		</div>
 	</div>
 </div>
@@ -124,6 +124,10 @@
 	.box.flipped {
 		transform: rotateY(180deg);
 		animation: grow 2s ease-in-out 0.8s forwards;
+	}
+
+	.box.flipped button{
+		width: auto;
 	}
 
 	@keyframes grow {
