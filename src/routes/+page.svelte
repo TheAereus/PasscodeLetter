@@ -20,7 +20,6 @@
 
 		if(audioButton) {
 			audioButton.addEventListener('click', e => {
-				e.preventDefault();
 				console.log("mwah");
 				audio.play();
 			});
