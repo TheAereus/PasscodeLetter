@@ -44,6 +44,7 @@ declare module '$env/static/private' {
 	export const INIT_CWD: string;
 	export const INTEL_DEV_REDIST: string;
 	export const JETBRAINS_INTELLIJ_COMMAND_END_MARKER: string;
+	export const JRE_HOME: string;
 	export const LOCALAPPDATA: string;
 	export const LOGONSERVER: string;
 	export const MIC_LD_LIBRARY_PATH: string;
@@ -155,6 +156,7 @@ declare module '$env/dynamic/private' {
 		INIT_CWD: string;
 		INTEL_DEV_REDIST: string;
 		JETBRAINS_INTELLIJ_COMMAND_END_MARKER: string;
+		JRE_HOME: string;
 		LOCALAPPDATA: string;
 		LOGONSERVER: string;
 		MIC_LD_LIBRARY_PATH: string;

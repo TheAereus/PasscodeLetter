@@ -2,16 +2,24 @@
 	let isFlipped = false;
 	let inputPassword = "";
 	let wrongPW = false;
-	const passwords = ["TEST", "TEST?", "TEST??"];
-	const prompts = [{title:"Yes, there is a password", placeholder:"You better get this right..."},
-					 {title:"Yes, there is another password", placeholder:"You better get this right too!"},
-					 {title:"Yes, this is the last password", placeholder:"You better not get this wrong!!"}];
+	const passwords = ["bounty", "waves", "simba"];
+	const prompts = [{title:"Yes, there is a password", placeholder:"You better get this right...", hint:"my first pick from a minis bag"},
+					 {title:"Yes, there is another password", placeholder:"You better get this right too!", hint:"first song you'd ever heard me sing"},
+					 {title:"Yes, this is the last password", placeholder:"You better not get this wrong!!", hint:"g'nighty _____ ~💙"}];
 	let currentScreen = 0;
+	let showHint = false;
+
+	function toggleHint(){
+		showHint = !showHint;
+	}
 
 	function toggleFlip() {
-		if (inputPassword.toUpperCase() === passwords[currentScreen]) {
+		console.log(inputPassword);
+		console.log(passwords[currentScreen]);
+		if (inputPassword.toUpperCase() === passwords[currentScreen].toUpperCase()) {
 			if (currentScreen < passwords.length - 1) {
 				currentScreen++;
+				showHint = false;
 				wrongPW = false;
 				inputPassword = "";
 			} else {
@@ -31,11 +39,14 @@
 	<div class="box {isFlipped ? 'flipped' : ''}">
 		{#each passwords as _, index}
 			<div class="box-content {currentScreen === index ? 'active' : ''}">
+				<div class="hint {showHint ? 'active' : ''}">
+					{prompts[index].hint}
+				</div>
 				<p class="title">{prompts[index].title}</p>
 				<input type="text" placeholder={prompts[index].placeholder} bind:value={inputPassword} />
 				<p class="subtext"><i>not</i> sensitive to capital letters</p>
 				<div class="buttons">
-					<button id="hint-button">
+					<button id="hint-button" on:click={toggleHint}>
 						<img src="lightbulb.png" alt="hint">
 					</button>
 					<button on:click={toggleFlip}>
@@ -140,6 +151,23 @@
 		font-size: 1.2rem;
 		border-radius: 10px;
 		transition: height 0.6s ease-in-out 0.8s;
+	}
+
+	.hint.active {
+		top:-50px;
+		transition: 0.6s ease-in-out;
+	}
+
+	.hint {
+		display: block;
+		position: absolute;
+		top: 0;
+		z-index: -1;
+		transition: 0.6s ease-in-out;
+		background: #014c4c;
+		color: #fff;
+		padding: 10px;
+		border-radius: 10px;
 	}
 
 
