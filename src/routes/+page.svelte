@@ -128,14 +128,15 @@
 
 	.box.flipped button{
 		width: auto;
-		margin-top: -25px;
-		margin-bottom: 25px;
+		margin-top: -15px;
+		margin-bottom: 15px;
 		color: black;
+		touch-action: manipulation;
 	}
 
 	.box.flipped button:active {
-		margin-top: -15px;
-		margin-bottom: 15px;
+		margin-top: -5px;
+		margin-bottom: 5px;
 		box-shadow: 0 0 #035d5c;
 	}
 
