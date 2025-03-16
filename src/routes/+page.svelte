@@ -8,6 +8,7 @@
 					 {title:"Yes, this is the last password", placeholder:"You better not get this wrong!!", hint:"g'nighty _____ ~💙"}];
 	let currentScreen = 0;
 	let showHint = false;
+	let audio;
 
 	function toggleHint(){
 		showHint = !showHint;
@@ -26,6 +27,9 @@
 				}, 600);
 			} else {
 				isFlipped = true;
+				setTimeout(function () {
+					audio.play();
+				}, 1500);
 			}
 		} else {
 			wrongPW = true;
@@ -85,6 +89,7 @@
 				<br>
 				Happy five years, dumbass. Here’s to half a decade of you driving me insane, of me missing you more than I should, of making me blue, but the good kind.<br>
 			</p>
+			<audio src="kiss.mp3" style="display:none" bind:this={audio}></audio>
 		</div>
 	</div>
 </div>
@@ -203,6 +208,7 @@
 		align-content: center;
 		justify-content: center;
 		padding: 5px;
+		width: 60px;
 		font-size: 30px;
 		font-family: 'Lato', sans-serif;
 		border: none;
