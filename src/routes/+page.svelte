@@ -18,10 +18,12 @@
 		console.log(passwords[currentScreen]);
 		if (inputPassword.toUpperCase() === passwords[currentScreen].toUpperCase()) {
 			if (currentScreen < passwords.length - 1) {
-				currentScreen++;
 				showHint = false;
 				wrongPW = false;
-				inputPassword = "";
+				setTimeout(function () {
+					currentScreen++;
+					inputPassword = "";
+				}, 600);
 			} else {
 				isFlipped = true;
 			}
