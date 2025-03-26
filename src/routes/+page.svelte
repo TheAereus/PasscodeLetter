@@ -39,6 +39,9 @@
 				}, 600)
 			} else {
 				isFlipped = true;
+				setTimeout(function () {
+					document.querySelector(".box-content").innerHTML = "";
+				}, 1000);
 			}
 		} else {
 			wrongPW = true;
