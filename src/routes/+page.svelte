@@ -21,19 +21,22 @@
 			if (currentScreen < passwords.length - 1) {
 				showHint = false;
 				wrongPW = false;
-				let anim = boxElement.animate(
-						[{ transform: "translateY(0)" }, { transform: "translateY(100vh)" }],
-						{ duration: 600, easing: "ease-in-out" }
-				);
 
-				anim.finished.then(() => {
-					currentScreen++;
-					inputPassword = "";
-					 anim = boxElement.animate(
-							[{ transform: "translateY(-100vh)" }, { transform: "translateY(0)" }],
+				setTimeout(function () {
+					let anim = boxElement.animate(
+							[{ transform: "translateY(0)" }, { transform: "translateY(100vh)" }],
 							{ duration: 600, easing: "ease-in-out" }
 					);
-				});
+
+					anim.finished.then(() => {
+						currentScreen++;
+						inputPassword = "";
+						anim = boxElement.animate(
+								[{ transform: "translateY(-100vh)" }, { transform: "translateY(0)" }],
+								{ duration: 600, easing: "ease-in-out" }
+						);
+					});
+				}, 600)
 			} else {
 				isFlipped = true;
 			}
