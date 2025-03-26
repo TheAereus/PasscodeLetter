@@ -1,6 +1,4 @@
 <script lang="ts">
-	import {onMount, tick} from "svelte";
-	import {browser} from '$app/environment'
 
 	let isFlipped = false;
 	let inputPassword = "";
@@ -12,34 +10,30 @@
 	let currentScreen = 0;
 	let showHint = false;
 
-	let audio: HTMLAudioElement;
-	let audioButton: HTMLButtonElement;
-
-	onMount(async () => {
-		audio = new Audio('kiss.mp3');
-		await tick();
-
-		if(audioButton) {
-			audioButton.addEventListener('click', e => {
-				console.log("mwah");
-				audio.play();
-			});
-		}
-	});
-
 	function toggleHint(){
 		showHint = !showHint;
 	}
+
+	let boxElement: HTMLElement;
 
 	function toggleFlip() {
 		if (inputPassword.toUpperCase() === passwords[currentScreen].toUpperCase()) {
 			if (currentScreen < passwords.length - 1) {
 				showHint = false;
 				wrongPW = false;
-				setTimeout(function () {
+				let anim = boxElement.animate(
+						[{ transform: "translateY(0)" }, { transform: "translateY(100vh)" }],
+						{ duration: 600, easing: "ease-in-out" }
+				);
+
+				anim.finished.then(() => {
 					currentScreen++;
 					inputPassword = "";
-				}, 600);
+					 anim = boxElement.animate(
+							[{ transform: "translateY(-100vh)" }, { transform: "translateY(0)" }],
+							{ duration: 600, easing: "ease-in-out" }
+					);
+				});
 			} else {
 				isFlipped = true;
 			}
@@ -54,7 +48,7 @@
 </svelte:head>
 
 <div class="box-container">
-	<div class="box {isFlipped ? 'flipped' : ''}">
+	<div class="box {isFlipped ? 'flipped' : ''}" bind:this={boxElement}>
 		{#each passwords as _, index}
 			<div class="box-content {currentScreen === index ? 'active' : ''}">
 				<div class="hint {showHint ? 'active' : ''}">
@@ -100,9 +94,6 @@
 				और अगर रही ज़िंदगी, तो मिलेंगे दोबारा।.<br>
 				<br>
 				Happy five years, dumbass. Here’s to half a decade of you driving me insane, of me missing you more than I should, of making me blue, but the good kind.<br>
-				<button bind:this={audioButton}>
-					here's a kiss on the cheek
-				</button>
 			</p>
 		</div>
 	</div>
